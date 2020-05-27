@@ -1,0 +1,69 @@
+# Presidents Test
+import random
+presidents_questions= [('George Washington', '1789-1797'), ('John Adams', '1797-1801'),
+                       ('Thomas Jefferson', '1801-1805'), ('James Madison', '1809-1813'),
+                       ('James Monroe', '1817-1825'), ('John Quincy Adams', '1825-1829'),
+                       ('Andrew Jackson', '1829-1837'), ('Martin Van Buren', '1837-1841'),
+                       ('William Henry Harrison', '1841-1841'), ('John Tyler', '1841-1845'),
+                       ('James K. Polk', '1845-1849'), ('Zachary Taylor', '1849-1850'),
+                       ('Millard Fillmore', '1850-1853'), ('Franklin Pierce', '1853-1857'),
+                       ('James Buchanan', '1857-1861'), ('Abraham Lincoln', '1861-1865'),
+                       ('Andrew Johnson', '1865-1869'), ('Ulysses S. Grant', '1869-1877'),
+                       ('Rutherford B. Hayes', '1877-1881'), 
+                       ('James A. Garfield', '1881-1881'), ('Chester A. Arthur', '1881-1885'),
+                       ('Grover Cleveland', '1885-1889'), ('Benjamin Harrison', '1889-1893'),
+                       ('Grover Cleveland 2', '1893-1897'), ('William McKinley', '1897-1901'),
+                       ('Theodore Roosevelt', '1901-1909'), ('William H. Taft', '1909-1913'),
+                       ('Woodrow Wilson', '1913-1921'), ('Warren Harding', '1921-1923'),
+                       ('Calvin Coolidge', '1923-1929'), ('Herbert Hoover', '1929-1933'),
+                       ('Franklin D. Roosevelt', '1933-1945'), ('Harry S. Truman', '1945-1953'),
+                       ('Dwight D. Eisenhower', '1953-1961'), ('John F. Kennedy', '1961-1963'),
+                       ('Lyndon B. Johnson', '1963-1969'), ('Richard Nixon', '1969-1974'),
+                       ('Gerald Ford', '1974-1977'), ('Jimmy Carter', '1977-1981'),
+                       ('Ronald Reagan', '1981-1989'), ('George H.W. Bush', '1989-1993'),
+                       ('Bill Clinton', '1993-2001'), ('George W. Bush', '2001-2009'),
+                       ('Barack Obama', '2009-2017'), ('Donald Trump', '2017-present')]
+
+result= {'Correct': 0, 'Incorrect': 0}
+
+def intro ():
+    print ('Hello! \nThis is a Presidents Test designed to help students learn the dates in which their presidents served. \nThe name of the president will be provided.')
+    print ('Fill in the dates, with a hyphen in between, then press Enter on your keyboard.\nYou only have one chance per question, so make it count!\nGood luck!')
+    print ('**********************************************************')
+
+def check_answer (answer, index): #sub-algorithm 1, abstraction 
+        actual= presidents_questions[index][1]
+        if actual == answer:
+            result['Correct']+= 1
+            print ('Yay! You got it right!')                      
+        else: 
+            result['Incorrect']+= 1
+            print ('Sorry, that is the wrong answer.')
+                            
+def display():
+        print (result)
+        print (' ')
+
+def totalscore ():
+        print ('Total score:', result['Correct'], 'out of 45 presidents.')
+
+def scorefeedback():
+    score= result['Correct']
+    percentage = int((score/45)*100)
+    print ('You received', percentage,'%')
+        
+def run(quiz):
+        number = 1
+        a= random.shuffle(presidents_questions)
+        for p in presidents_questions:
+                print (number,')', p[0])
+                answer = str(input('Your answer: ' ))
+                check_answer(answer, presidents_questions.index(p)) #sub-algorithm 1
+                print ('Correct answer:', p[1])
+                display() 
+                number +=1
+        totalscore() 
+        scorefeedback() #sub-algorithm 2
+        
+intro()
+run(presidents_questions)
